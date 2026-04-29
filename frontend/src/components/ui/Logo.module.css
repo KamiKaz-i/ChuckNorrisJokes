@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    position:absolute;
+    rotate: calc(-43deg);
+    gap: 10px;
+}
+.stack{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 20px;
+}

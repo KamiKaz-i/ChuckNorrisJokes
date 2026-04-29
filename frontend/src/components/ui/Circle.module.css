@@ -1,0 +1,20 @@
+.Circle{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color:#E84A8F;
+    position: relative;
+}
+.Circle::after{
+    content: "";
+    position: absolute;
+    z-index: -2;
+    top:4px;
+    left:-5px;
+    width: 40px;
+    height: 40px;
+    background-color:#737172;
+    border-radius: 100%;
+    filter:blur(4px);
+    opacity:50%;
+}
