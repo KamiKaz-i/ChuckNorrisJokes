@@ -4,4 +4,10 @@ body{
 #root{
   box-sizing: border-box;
   font-family: 'Josefin Slab';
+  --white:#FDFDFA;
+  --pink:#E84A8F;
+  --lightPink:#E5B4C6;
+  --black:#2C2C2C;
+  --gray:#737172;
+  --blue:#5B64B4;
 }

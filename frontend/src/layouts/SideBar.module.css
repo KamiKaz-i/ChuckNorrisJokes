@@ -1,0 +1,11 @@
+.svgIcon{
+    filter: invert(98%) sepia(84%) saturate(154%) hue-rotate(29deg) brightness(109%) contrast(97%);
+}
+.SideBarContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--gray);
+    color: var(--white);
+}

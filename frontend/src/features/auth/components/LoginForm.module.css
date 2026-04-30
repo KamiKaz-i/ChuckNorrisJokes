@@ -1,9 +1,10 @@
 .LoginFormContainer{
     display: flex;
-    background-color:#FDFDFA;
+    background-color:var(--white);
     border-radius: 1.5rem;
     width: 65%; 
     position: relative;
+    justify-content: center;
     transform-style: preserve-3d;
     
 }
@@ -12,16 +13,17 @@
     position: absolute;
     top:10px;
     
-    width: 100%; 
+    width: 99.5%; 
     height: 100%;
     border-radius: 1.5rem;
-    background-color: black;
+    background-color: var(--black);
     transform: translateZ(-1px);
     z-index: -1;
-    filter:blur(0.8rem);
-    opacity:30%;
+    filter:blur(0.7rem);
+    opacity:35%;
 }
 .LoginFormStack{
+    margin-top: 20px;
     row-gap: 20px;
     width: 100%;
     display: flex;
@@ -31,15 +33,14 @@
     display: flex;
     width: 50%;
     justify-content: center;
-    padding: 10px;
+    padding: 8px;
 }
 
 .Typography{
     font-family: 'Josefin Slab';
+    
 }
 .svgIcon{
     filter: invert(50%) sepia(7%) saturate(58%) hue-rotate(278deg) brightness(86%) contrast(87%);
 }
-.MuiInputBase-input{
-    color:red;
-}
+

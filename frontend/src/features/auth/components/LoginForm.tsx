@@ -1,7 +1,8 @@
 import styles from './LoginForm.module.css';
-import jokeIcon from '../../assets/joke-svgrepo-com.svg';
-import { Box,Stack,Typography,TextField,Button } from '@mui/material';
-import Logo from '../../components/ui/Logo.tsx';
+import jokeIcon from '../../../assets/joke-svgrepo-com.svg';
+import { Box,Stack,Typography,Button } from '@mui/material';
+import Logo from '../../../components/ui/Logo.tsx';
+import StyledTextField from '../../../components/forms/StyledTextField.tsx';
 
 export const LoginForm = () => {
   return (
@@ -12,48 +13,36 @@ export const LoginForm = () => {
         <Stack className={styles.LoginFormStack}>
             <Box className={styles.LoginFormBox}> 
                 <img src={jokeIcon} className={styles.svgIcon} width="75" height="75" alt=""  />
-                
             </Box>
             <Box className={styles.LoginFormBox}>
-                <Typography sx={{ fontFamily: '"Josefin Slab", serif' }} >
+                <Typography sx={{ fontFamily: 'Josefin Slab' }} >
                     Explore "Chuck Jokes" with us!
                 </Typography>
             </Box>
              <Box className={styles.LoginFormBox}>
-               <TextField id="outlined-basic" label="E-mail" variant="outlined" placeholder="Type your email" sx={{
-                    width:"100%",
-                }} />
+                <StyledTextField label="E-mail" placeholder="Type your email"></StyledTextField>
             </Box> 
             <Box className={styles.LoginFormBox}>
-               <TextField
-                id="outlined-password-input"
-                label="Password"
-                placeholder="Type your password"
-                type="password"
-                autoComplete="current-password"
-                sx={{
-                    width:"100%",
-                }}
-            />
+                <StyledTextField label="Password" placeholder="Type your password" type="password"></StyledTextField>
             </Box>   
              <Box className={styles.LoginFormBox}>
                 <Button variant="contained" disabled sx={{
                     width:"100%",
-                }}>Login</Button>
+                }}>LOG IN</Button>
             </Box>
             <Box className={styles.LoginFormBox}>
                 <Stack direction="row" spacing={1}>
-                    <Typography sx={{ fontFamily: '"Josefin Slab", serif' }}>
+                    <Typography sx={{ fontFamily: 'Josefin Slab' }}>
                         Don't have an account?
                     </Typography>
-                    <Typography sx={{ fontFamily: '"Josefin Slab", serif' }}>
+                    <Typography sx={{ fontFamily: 'Josefin Slab' }}>
                         Sign up here.
                     </Typography>
                 </Stack>
                 
             </Box>
             <Box className={styles.LoginFormBox}>
-                <Typography sx={{ fontFamily: '"Josefin Slab", serif' }} >
+                <Typography sx={{ fontFamily: 'Josefin Slab' ,color:`var(--pink)`,fontStyle:'italic'}} >
                     "Chuck Norris can login without signing up, on any website"
                 </Typography>
             </Box>
