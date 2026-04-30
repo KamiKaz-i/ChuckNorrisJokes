@@ -44,7 +44,7 @@ export const RegisterForm = () => {
             <Box className={styles.LoginFormBox} sx={{
                 marginBottom:4,
             }}>
-                <Typography sx={{ fontFamily: 'Josefin Slab' ,color:`var(--pink)`,fontStyle:'italic'}} >
+                <Typography sx={{ fontFamily: 'Josefin Slab' ,color:`var(--pink)`,fontStyle:'italic',fontWeight:800}} >
                     "Chuck Norris can login without signing up, on any website"
                 </Typography>
             </Box>

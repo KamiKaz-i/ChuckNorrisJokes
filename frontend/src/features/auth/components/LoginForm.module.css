@@ -2,7 +2,7 @@
     display: flex;
     background-color:var(--white);
     border-radius: 1.5rem;
-    width: 65%; 
+    width: 55%; 
     position: relative;
     justify-content: center;
     transform-style: preserve-3d;
@@ -12,7 +12,6 @@
     content: "";
     position: absolute;
     top:10px;
-    
     width: 99.5%; 
     height: 100%;
     border-radius: 1.5rem;
@@ -41,6 +40,7 @@
     
 }
 .svgIcon{
+    margin-bottom: 20px;
     filter: invert(50%) sepia(7%) saturate(58%) hue-rotate(278deg) brightness(86%) contrast(87%);
 }
 

@@ -15,7 +15,7 @@ export const LoginForm = () => {
                 <img src={jokeIcon} className={styles.svgIcon} width="75" height="75" alt=""  />
             </Box>
             <Box className={styles.LoginFormBox}>
-                <Typography sx={{ fontFamily: 'Josefin Slab' }} >
+                <Typography sx={{ fontFamily: 'Josefin Slab' ,fontSize:30}} >
                     Explore "Chuck Jokes" with us!
                 </Typography>
             </Box>
@@ -30,7 +30,7 @@ export const LoginForm = () => {
                     width:"100%",
                 }}>LOG IN</Button>
             </Box>
-            <Box className={styles.LoginFormBox}>
+            <Box className={styles.LoginFormBox} sx={{padding:0,marginTop:-2}}>
                 <Stack direction="row" spacing={1}>
                     <Typography sx={{ fontFamily: 'Josefin Slab' }}>
                         Don't have an account?
@@ -42,7 +42,7 @@ export const LoginForm = () => {
                 
             </Box>
             <Box className={styles.LoginFormBox}>
-                <Typography sx={{ fontFamily: 'Josefin Slab' ,color:`var(--pink)`,fontStyle:'italic'}} >
+                <Typography sx={{ fontFamily: 'Josefin Slab' ,color:`var(--pink)`,fontStyle:'italic',fontWeight:600}} >
                     "Chuck Norris can login without signing up, on any website"
                 </Typography>
             </Box>

@@ -8,11 +8,11 @@ const SideBar = () => {
         <Box > 
             <img src={jokeIcon} className={styles.svgIcon} width="75" height="75" alt=""  />
         </Box>
-        <Typography>RANDOM JOKE</Typography>
-        <Typography>MY JOKE</Typography>
-        <Typography>ADD JOKE</Typography>
-        <Typography>LOG OUT</Typography>
-        <Typography>node with chuck by chuck</Typography>
+        <Typography sx={{fontFamily:'Josefin Slab' ,fontSize:'1.5rem'}}>RANDOM JOKE</Typography>
+        <Typography sx={{fontFamily:'Josefin Slab',fontSize:'1.5rem'}}>MY JOKE</Typography>
+        <Typography sx={{fontFamily:'Josefin Slab',fontSize:'1.5rem'}}>ADD JOKE</Typography>
+        <Typography sx={{marginTop:20,fontFamily:'Josefin Slab',fontSize:'1.5rem'} }>LOG OUT</Typography>
+        <Typography sx={{fontFamily:'Josefin Slab',fontSize:'1.5rem'}}>Node with Chuck by Chuck - 2024</Typography>
     </Box>
   )
 }
