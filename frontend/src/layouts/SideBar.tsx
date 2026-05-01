@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Typography } from '@mui/material'
 import jokeIcon from '../assets/joke-svgrepo-com.svg';
 import styles from './SideBar.module.css'
