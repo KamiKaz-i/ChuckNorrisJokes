@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    min-width: 560px;
     height: 100%;
     background-color: var(--white);
     border-radius: 1.5rem;

@@ -6,4 +6,4 @@ const Register = () => {
   )
 }
 
-export default Login
+export default Register

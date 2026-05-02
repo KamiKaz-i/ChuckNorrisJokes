@@ -6,7 +6,8 @@
     border-radius: 1.5rem;
     position: relative;
     transform-style: preserve-3d;
-    min-width: 650px;
+    width: 100%;
+    min-width: 560px;
     
 }
 .container::after{

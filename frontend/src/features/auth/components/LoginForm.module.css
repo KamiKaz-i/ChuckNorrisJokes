@@ -1,12 +1,12 @@
 .LoginFormContainer{
     display: flex;
     background-color:var(--white);
-    border-radius: 1.5rem;
-    width: 55%; 
+    border-radius: 1.4rem;
+    width: 60%; 
     position: relative;
     justify-content: center;
     transform-style: preserve-3d;
-    
+    min-width: 560px;   
 }
 .LoginFormContainer::after{
     content: "";

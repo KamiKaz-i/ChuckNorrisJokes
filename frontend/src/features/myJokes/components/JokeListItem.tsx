@@ -34,7 +34,9 @@ const JokeListItem = ({ joke, index, onDelete }:jokeItem) => {
       </Box>
       <Box className={styles.jokeRowRight}>
         <IconButton disableRipple onClick={() => onDelete(index)} className={styles.deleteBtn}>
-        <BackspaceOutlinedIcon fontSize="small" className={styles.backspaceIcon} />
+        <BackspaceOutlinedIcon fontSize="small" className={styles.backspaceIcon} sx={{
+          height:'1rem',
+        }}/>
         </IconButton>
       </Box>
       

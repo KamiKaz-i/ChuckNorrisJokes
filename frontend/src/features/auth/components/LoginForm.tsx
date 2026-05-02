@@ -7,7 +7,7 @@ import StyledTextField from '../../../components/forms/StyledTextField.tsx';
 export const LoginForm = () => {
   return (
     <Box className={styles.LoginFormContainer}>
-        <Logo scale={0.5} top={100} left={-70}></Logo>
+        <Logo scale={0.65} top={80} left={-70}></Logo>
         <Logo scale={0.3} top={400} right={-70}></Logo>
         
         <Stack className={styles.LoginFormStack}>
