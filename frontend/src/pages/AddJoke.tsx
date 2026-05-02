@@ -1,7 +1,10 @@
-
+import SideBarLayout from '../layouts/SideBarLayout'
+import AddJokes from '../features/addJokes/components/AddJokes'
 const AddJoke = () => {
   return (
-    <div>AddJoke</div>
+    <SideBarLayout>
+        <AddJokes></AddJokes>
+    </SideBarLayout>
   )
 }
 

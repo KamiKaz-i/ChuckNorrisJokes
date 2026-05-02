@@ -7,6 +7,7 @@ const StyledTextField = (props:TextFieldProps) => {
                             shrink:true,
                         }
                     }}
+                    {...props}
                    sx={{
                         width:`100%`,
                       "& label.Mui-focused": { color: 'var(--black)' },
@@ -23,7 +24,7 @@ const StyledTextField = (props:TextFieldProps) => {
                         },
                       },
                     }}
-                    {...props}
+                    
                      />
   )
 }

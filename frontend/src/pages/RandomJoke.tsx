@@ -1,4 +1,4 @@
-import SideBarLayout from '../layouts/SidebarLayout'
+import SideBarLayout from '../layouts/SideBarLayout'
 import RandomJokes from '../features/randomJokes/components/RandomJokes'
 
 
