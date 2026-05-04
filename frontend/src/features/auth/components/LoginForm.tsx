@@ -30,7 +30,7 @@ export const LoginForm = () => {
                     width:"100%",
                 }}>LOG IN</Button>
             </Box>
-            <Box className={styles.LoginFormBox} sx={{padding:0,marginTop:-2}}>
+            <Box className={styles.LoginFormBox} >
                 <Stack direction="row" spacing={1}>
                     <Typography sx={{ fontFamily: 'Josefin Slab' }}>
                         Don't have an account?
@@ -41,7 +41,9 @@ export const LoginForm = () => {
                 </Stack>
                 
             </Box>
-            <Box className={styles.LoginFormBox}>
+            <Box className={styles.LoginFormBox} sx={{
+                marginBottom:4,
+            }}>
                 <Typography sx={{ fontFamily: 'Josefin Slab' ,color:`var(--pink)`,fontStyle:'italic',fontWeight:600}} >
                     "Chuck Norris can login without signing up, on any website"
                 </Typography>

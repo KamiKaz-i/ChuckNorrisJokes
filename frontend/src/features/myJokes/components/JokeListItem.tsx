@@ -3,20 +3,17 @@ import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined';
 import IconButton from '@mui/material/IconButton';
 import { Box, Typography } from '@mui/material'
 import styles from './JokeListItem.module.css'
-interface jokeItem{
-    joke:string,
-    index:number,
-    onDelete:(index: number) => void;
-}
+import type { jokeItem } from '../../../types/Joke';
 
 const JokeListItem = ({ joke, index, onDelete }:jokeItem) => {
+  
+  
   return (
     <Box className={styles.jokeRow}>
       <Box className={styles.jokeRowLeft}>
         <Typography className={styles.jokeNumber} sx={{ 
           fontFamily: "Josefin Slab",
           overflow: 'hidden',
-          textOverflow: 'ellipsis',
           whiteSpace: 'nowrap'
         }}>
           {index + 1}.

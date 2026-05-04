@@ -1,4 +1,3 @@
-import React from 'react'
 import {Box, Stack, Typography,Button } from '@mui/material'
 import styles from './RandomJokes.module.css'
 import StyledTextField from '../../../components/forms/StyledTextField'
@@ -9,13 +8,42 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import type { SelectChangeEvent } from '@mui/material/Select';
 
+import { useState } from 'react'
+import { useRandomJoke,useCategories,useSaveJoke } from '../hooks/useRandomJokes'
+
 const RandomJokes = () => {
-  const [categories, setCategories] = React.useState('');
-
+  
+  const [fetchEnabled, setFetchEnabled] = useState<boolean>(true)
+  const [selectedCategory,setSelectedCategory] = useState<string>();
+  const [impersonate,setImpersonate] = useState<string>('');
+  const [impersonatedJoke,setImpersonatedJoke] = useState<string|undefined>('');
+  const { data: categories } = useCategories()
+  const { data: joke, isFetching, refetch } = useRandomJoke(selectedCategory,fetchEnabled)
+  const { mutate } = useSaveJoke();
+  const handleSaveJoke = () =>{
+    if(impersonatedJoke){
+      mutate(impersonatedJoke);
+    }
+    else{
+      mutate(joke?.value)
+    }
+  }
+  const handleDraw = () => {
+    if (!fetchEnabled) {
+      setFetchEnabled(true) 
+    } else {
+      refetch() 
+    }
+  }
   const handleChange = (event: SelectChangeEvent) => {
-    setCategories(event.target.value as string);
+    setSelectedCategory(event.target.value as string);
   };
-
+  const handleImpersonate = (event)=>{
+    setImpersonate(event.target.value);
+    const impersonatedJoke = joke?.value.replaceAll("Chuck Norris",event.target.value)
+    setImpersonatedJoke(impersonatedJoke);
+  }
+ 
   return (
     <Box className={styles.container}>
       
@@ -28,12 +56,11 @@ const RandomJokes = () => {
             Get your random joke
           </Typography>
         </Box>
-        <Box sx={{display:'flex',width:'100%'}}>
-          <Box sx={{maxWidth:'400px',overflow:'wrap'}}>
-            <Typography sx={{ fontFamily: 'Josefin Slab' ,color:`var(--black)`,fontStyle:'italic',fontWeight:600,fontSize:'larger'}}>
-            "Chuck Norris hasn't lived the American dream so much as he's skull-fucked it into submission."
+        <Box sx={{display:'flex',width:'100%',overflow:'hidden'}}>
+            <Typography sx={{ fontFamily: 'Josefin Slab' ,color:`var(--black)`,fontStyle:'italic',fontWeight:600,fontSize:'larger',overflow:'hidden',textOverflow:'ellipsis'}}>
+            "{impersonate?joke?.value.replaceAll("Chuck Norris",impersonate):joke?.value}"
+            
             </Typography>
-          </Box>
         </Box>
         
         
@@ -41,10 +68,10 @@ const RandomJokes = () => {
           <Stack spacing={5} sx={{
             width:'65%'
           }}>
-            <StyledTextField label='impersonate' placeholder='Impersonate Chuck'></StyledTextField>
-            <Button variant="contained" sx={{
-              backgroundColor:'var(--blue)',
-            }}>Draw a random chuck norris joke</Button>
+            <StyledTextField label='impersonate' placeholder='Impersonate Chuck' onChange={handleImpersonate}></StyledTextField>
+            <Button variant="contained" disabled={isFetching} onClick={handleDraw} sx={{
+              backgroundColor:'var(--blue)',textOverflow:'ellipsis',overflow:'hidden'
+            }}>{impersonate?`Draw a random ${impersonate} joke`:"Draw a random chuck norris joke"}</Button>
           </Stack>
           <Stack spacing={5} sx={{
             width:'30%',
@@ -61,7 +88,7 @@ const RandomJokes = () => {
                 displayEmpty
                 labelId="Categories-label"
                 id="Categories-Select"
-                value={categories}
+                value={selectedCategory}
                 notched={true}
                 label="Categories"
                 onChange={handleChange}
@@ -88,15 +115,17 @@ const RandomJokes = () => {
               
                     }}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {categories?.map((category)=>{
+                  return <MenuItem value={category}>{category}</MenuItem>
+                })}
               </Select>
               
             </FormControl>
-            <Button variant="contained" sx={{
+            <Button variant="contained" onClick={handleSaveJoke} sx={{
               backgroundColor:'var(--pink)',
-            }}>Save this Joke</Button>
+            }}>
+              Save this Joke
+            </Button>
           </Stack>
         </Box>
       </Stack>

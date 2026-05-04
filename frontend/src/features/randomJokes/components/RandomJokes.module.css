@@ -3,6 +3,7 @@
     justify-content: center;
     width: 100%;
     min-width: 560px;
+    max-width: 640px;
     height: 100%;
     background-color: var(--white);
     border-radius: 1.5rem;
@@ -25,7 +26,8 @@
 .stack{
     display: flex;
     width: 100%;
-    align-items: center;
+    align-items:center;
+    justify-content: space-between;
     margin-top: 5rem;
     padding:40px 40px 40px 40px;
     gap:30px
@@ -67,5 +69,5 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-top: 70px;
+    
 }

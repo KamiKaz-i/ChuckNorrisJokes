@@ -1,19 +1,24 @@
-import { useState } from 'react'
 import { Box, Stack, Typography } from '@mui/material'
 import styles from './MyJokes.module.css'
 import JokeListItem from './JokeListItem'
+import { useMyJokes,useUpdateMyJokes } from '../hooks/useMyJokes'
+const MyJokes = () => {
+  const {data:jokes,isPending,error} = useMyJokes();
+  const { mutate } = useUpdateMyJokes();
+  const handleDelete = (indexToDelete: number) => {
 
-const RandomJokes = () => {
-  const [jokes, setJokes] = useState([
-    "testtesttessttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttessttesttesttesttesttesttesttesttesttesttesttesttesttesttesttettesttesttesttessttesttesttesttesttesttestst",
-    "ttesttesttesttesttestest2",
-    "test3"
-  ]);
+    if (!jokes) return;
+    const updatedList = jokes.filter((_, index) => index !== indexToDelete);
+    console.log(updatedList);
+    mutate(updatedList);
 
-  const handleDelete = (indexToDelete:number) => {
-    setJokes(jokes.filter((joke, index) => index !== indexToDelete));
   };
-
+  if (isPending) return <Box className={styles.container}>
+    <p>loading</p>
+  </Box>
+  if(error) return <Box className={styles.container}>
+    <p>error</p>
+  </Box>
   return (
     <Box className={styles.container}>
       <Stack className={styles.stack}>
@@ -23,7 +28,8 @@ const RandomJokes = () => {
           </Typography>
         </Box>
         <Box sx={{ width: '100%',display:'flex',alignItems:'center' ,flexDirection:'column'}}>
-            {jokes.map((joke, index) => (
+            
+            {jokes?.map((joke:string, index:number) => (
               <JokeListItem 
                 key={index} 
                 joke={joke} 
@@ -37,4 +43,4 @@ const RandomJokes = () => {
   )
 }
 
-export default RandomJokes
+export default MyJokes
