@@ -21,7 +21,6 @@ export class UsersService {
   ];
 
   findOne(email: string): User | undefined {
-    console.log(this.users);
     return this.users.find((user) => user.email === email);
   }
   create(email: string, pass: string) {

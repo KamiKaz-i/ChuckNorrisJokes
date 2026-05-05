@@ -11,6 +11,7 @@ import {
 import { JokesService } from './jokes.service';
 import type { Joke } from '../types/Joke';
 import { AuthGuard } from '../auth/auth.guard';
+
 @Controller('jokes')
 export class JokesController {
   constructor(private readonly JokeService: JokesService) {}
@@ -29,7 +30,6 @@ export class JokesController {
   @UseGuards(AuthGuard)
   @Delete(':id')
   deleteMyjoke(@Request() req, @Param('id') jokeToDelete: string): Joke[] {
-    console.log('what');
     const { sub } = req.user;
     return this.JokeService.deleteMyJoke(jokeToDelete, sub);
   }
