@@ -19,14 +19,19 @@ export const useRandomJoke = (category?: string, enabled: boolean = false) => {
   })
 }
 export const useSaveJoke = () =>{
+  
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (joke: string|undefined) => {
+      const token = localStorage.getItem('token');
       if (!joke) return;
-      const res = await fetch('http://localhost:3000/', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ joke: joke }),
+      const res = await fetch('http://localhost:3000/jokes', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+         },
+        body: JSON.stringify({ text:joke}),
       });
       if (!res.ok) throw new Error('Failed to update jokes');
       return res.json();

@@ -1,17 +1,15 @@
 import { Box, Stack, Typography } from '@mui/material'
 import styles from './MyJokes.module.css'
 import JokeListItem from './JokeListItem'
-import { useMyJokes,useUpdateMyJokes } from '../hooks/useMyJokes'
+import { useMyJokes,useDeleteMyJoke } from '../hooks/useMyJokes'
+import type { myJoke } from '../../../types/Joke'
 const MyJokes = () => {
   const {data:jokes,isPending,error} = useMyJokes();
-  const { mutate } = useUpdateMyJokes();
+  console.log(jokes);
+  const { mutate } = useDeleteMyJoke();
   const handleDelete = (indexToDelete: number) => {
-
     if (!jokes) return;
-    const updatedList = jokes.filter((_, index) => index !== indexToDelete);
-    console.log(updatedList);
-    mutate(updatedList);
-
+    mutate(indexToDelete);
   };
   if (isPending) return <Box className={styles.container}>
     <p>loading</p>
@@ -29,7 +27,7 @@ const MyJokes = () => {
         </Box>
         <Box sx={{ width: '100%',display:'flex',alignItems:'center' ,flexDirection:'column'}}>
             
-            {jokes?.map((joke:string, index:number) => (
+            {jokes?.map((joke:myJoke, index:number) => (
               <JokeListItem 
                 key={index} 
                 joke={joke} 

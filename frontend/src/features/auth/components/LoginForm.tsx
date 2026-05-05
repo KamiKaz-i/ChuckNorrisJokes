@@ -3,8 +3,40 @@ import jokeIcon from '../../../assets/joke-svgrepo-com.svg';
 import { Box,Stack,Typography,Button } from '@mui/material';
 import Logo from '../../../components/ui/Logo.tsx';
 import StyledTextField from '../../../components/forms/StyledTextField.tsx';
-
+import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import {  useNavigate,Link } from '@tanstack/react-router';
+import LinkMui from '@mui/material/Link';
 export const LoginForm = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const navigate = useNavigate();
+  const loginMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch('http://localhost:3000/auth/login', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body:JSON.stringify({
+            email:email, 
+            password: password,
+        })
+      });
+      const res = await response.json()
+      return res;
+    },
+    onSuccess: (res) => {
+      localStorage.setItem('token', res.access_token);
+      navigate({ to: '/randomJokes' });
+    },
+  });
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (email && password) {
+      loginMutation.mutate();
+    }
+  };
   return (
     <Box className={styles.LoginFormContainer}>
         <Logo scale={0.65} top={80} left={-70}></Logo>
@@ -20,14 +52,15 @@ export const LoginForm = () => {
                 </Typography>
             </Box>
              <Box className={styles.LoginFormBox}>
-                <StyledTextField label="E-mail" placeholder="Type your email"></StyledTextField>
+                <StyledTextField label="E-mail" placeholder="Type your email" onChange={(e) => setEmail(e.target.value)}></StyledTextField>
             </Box> 
             <Box className={styles.LoginFormBox}>
-                <StyledTextField label="Password" placeholder="Type your password" type="password"></StyledTextField>
+                <StyledTextField label="Password" placeholder="Type your password" type="password" onChange={(e) => setPassword(e.target.value)}></StyledTextField>
             </Box>   
              <Box className={styles.LoginFormBox}>
-                <Button variant="contained" disabled sx={{
+                <Button onClick={handleLogin} variant="contained" disabled={!(email&&password)} sx={{
                     width:"100%",
+                    backgroundColor:"var(--blue)"
                 }}>LOG IN</Button>
             </Box>
             <Box className={styles.LoginFormBox} >
@@ -35,9 +68,16 @@ export const LoginForm = () => {
                     <Typography sx={{ fontFamily: 'Josefin Slab' }}>
                         Don't have an account?
                     </Typography>
+                    <LinkMui component={Link}
+                        to="/register" 
+                        underline="none" 
+                        color="inherit"
+                        className={styles.Link}
+                    >
                     <Typography sx={{ fontFamily: 'Josefin Slab' }}>
                         Sign up here.
                     </Typography>
+                    </LinkMui>
                 </Stack>
                 
             </Box>

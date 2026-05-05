@@ -11,6 +11,8 @@ const SideBarLayout = ({children}:LayoutProps) => {
         alignItems:'stretch',
         gap:'40px',
         width:'60%',
+        height:'65%',
+        
     }}>
         <SideBar/>
         <Box sx={{

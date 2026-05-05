@@ -1,11 +1,13 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography ,Button} from '@mui/material'
 import jokeIcon from '../assets/joke-svgrepo-com.svg';
 import styles from './SideBar.module.css'
 import {
   Link,
+  useNavigate,
 } from '@tanstack/react-router'
 import LinkMui from '@mui/material/Link';
 const SideBar = () => {
+  const navigate = useNavigate();
   return (
     <Box className={styles.SideBarContainer}>
         <Box className={styles.Logo}> 
@@ -37,8 +39,20 @@ const SideBar = () => {
         >
           <Typography sx={{fontFamily:'Josefin Slab',fontSize:'1.5rem'}}>ADD JOKE</Typography>
         </LinkMui>
-        
-        <Typography sx={{marginTop:15,fontFamily:'Josefin Slab',fontSize:'1.5rem', position:"absolute",bottom:'60px',whiteSpace: 'nowrap'} }>LOG OUT</Typography>
+        <Typography onClick={
+            ()=>{localStorage.removeItem('token');
+            navigate({to:"/"})}
+          } sx={{
+            marginTop:15,
+            fontFamily:'Josefin Slab',
+            fontSize:'1.5rem',
+             position:"absolute",
+             bottom:'60px',
+             whiteSpace: 'nowrap',
+             cursor:'pointer',
+             } }>
+              LOG OUT
+        </Typography>
         <Typography sx={{fontFamily:'Josefin Slab',fontSize:'small',left:'50%', transform: 'translateX(-50%)',marginTop:'auto',position:"absolute",bottom:'10px',whiteSpace: 'nowrap'}}>made with Chuck by Chuck - 2024</Typography>
     </Box>
   )

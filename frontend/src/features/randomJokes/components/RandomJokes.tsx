@@ -12,23 +12,24 @@ import { useState } from 'react'
 import { useRandomJoke,useCategories,useSaveJoke } from '../hooks/useRandomJokes'
 
 const RandomJokes = () => {
-  
   const [fetchEnabled, setFetchEnabled] = useState<boolean>(true)
   const [selectedCategory,setSelectedCategory] = useState<string>();
   const [impersonate,setImpersonate] = useState<string>('');
-  const [impersonatedJoke,setImpersonatedJoke] = useState<string|undefined>('');
+  const [appliedName, setAppliedName] = useState<string>('');
   const { data: categories } = useCategories()
   const { data: joke, isFetching, refetch } = useRandomJoke(selectedCategory,fetchEnabled)
   const { mutate } = useSaveJoke();
+  const displayedJoke = appliedName 
+    ? joke?.value.replaceAll("Chuck Norris", appliedName) 
+    : joke?.value;
   const handleSaveJoke = () =>{
-    if(impersonatedJoke){
-      mutate(impersonatedJoke);
+    if(displayedJoke){
+      mutate(displayedJoke);
     }
-    else{
-      mutate(joke?.value)
-    }
+    
   }
   const handleDraw = () => {
+    setAppliedName(impersonate);
     if (!fetchEnabled) {
       setFetchEnabled(true) 
     } else {
@@ -40,8 +41,6 @@ const RandomJokes = () => {
   };
   const handleImpersonate = (event)=>{
     setImpersonate(event.target.value);
-    const impersonatedJoke = joke?.value.replaceAll("Chuck Norris",event.target.value)
-    setImpersonatedJoke(impersonatedJoke);
   }
  
   return (
@@ -56,9 +55,9 @@ const RandomJokes = () => {
             Get your random joke
           </Typography>
         </Box>
-        <Box sx={{display:'flex',width:'100%',overflow:'hidden'}}>
+        <Box sx={{display:'flex',width:'80%'}}>
             <Typography sx={{ fontFamily: 'Josefin Slab' ,color:`var(--black)`,fontStyle:'italic',fontWeight:600,fontSize:'larger',overflow:'hidden',textOverflow:'ellipsis'}}>
-            "{impersonate?joke?.value.replaceAll("Chuck Norris",impersonate):joke?.value}"
+            {displayedJoke ? `"${displayedJoke}"` : ""}
             
             </Typography>
         </Box>
@@ -78,12 +77,12 @@ const RandomJokes = () => {
           }}>
             <FormControl fullWidth sx={{
               "& .MuiInputLabel-root.Mui-focused": { 
-      color: "var(--black)" 
-    }
+              color: "var(--black)" 
+            }
             }}>
               <InputLabel id="Category-label" shrink={true}  >
-    Category
-  </InputLabel>
+                Category
+              </InputLabel>
               <Select
                 displayEmpty
                 labelId="Categories-label"
@@ -93,11 +92,11 @@ const RandomJokes = () => {
                 label="Categories"
                 onChange={handleChange}
                 renderValue={(value: unknown) => {
-                if (!value) {
-                  return <Typography sx={{color:"var(--gray)"}}>Categories</Typography>;
-                }
-                return <>{value}</>;
-        }}
+                  if (!value) {
+                    return <Typography sx={{color:"var(--gray)"}}>Categories</Typography>;
+                  }
+                  return <>{value}</>;
+                }}
                sx={{
                         width:`100%`,
                       "& label.Mui-focused": { color: 'var(--black)' },

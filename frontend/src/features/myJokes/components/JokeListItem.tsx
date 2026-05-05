@@ -26,11 +26,11 @@ const JokeListItem = ({ joke, index, onDelete }:jokeItem) => {
           whiteSpace: 'nowrap',
           width:'100%',
         }}>
-          "{joke}"
+          "{joke.text}"
         </Typography>
       </Box>
       <Box className={styles.jokeRowRight}>
-        <IconButton disableRipple onClick={() => onDelete(index)} className={styles.deleteBtn}>
+        <IconButton disableRipple onClick={() => onDelete(joke.id)} className={styles.deleteBtn}>
         <BackspaceOutlinedIcon fontSize="small" className={styles.backspaceIcon} sx={{
           height:'1rem',
         }}/>

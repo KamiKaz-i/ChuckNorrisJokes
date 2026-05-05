@@ -9,14 +9,17 @@ export const useMyJokes = () => {
       staleTime: 0, 
     })
 }
-export const useUpdateMyJokes = ()=>{
+export const useDeleteMyJoke = ()=>{
+  const token = localStorage.getItem('token');
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (newList: string[]) => {
-      const res = await fetch('http://localhost:3000/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newList),
+    mutationFn: async (id: number) => {
+      const res = await fetch(`http://localhost:3000/jokes/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        
       });
       if (!res.ok) throw new Error('Failed to update jokes');
       return res.json();

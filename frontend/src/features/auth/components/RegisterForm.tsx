@@ -3,11 +3,14 @@ import jokeIcon from '../../../assets/joke-svgrepo-com.svg';
 import { Box,Stack,Typography,Button } from '@mui/material';
 import Logo from '../../../components/ui/Logo.tsx';
 import StyledTextField from '../../../components/forms/StyledTextField.tsx';
+import {  useNavigate,Link } from '@tanstack/react-router';
+import LinkMui from '@mui/material/Link';
 export const RegisterForm = () => {
+    const navigate = useNavigate();
   return (
     <Box className={styles.LoginFormContainer}>
-        <Logo scale={0.7} top={100} left={-70}></Logo>
-        <Logo scale={0.3} top={430} right={-70}></Logo>
+        <Logo scale={0.65} top={80} left={-70}></Logo>
+        <Logo scale={0.3} top={400} right={-70}></Logo>
         
         <Stack className={styles.LoginFormStack}>
             <Box className={styles.LoginFormBox}> 
@@ -35,16 +38,23 @@ export const RegisterForm = () => {
                     <Typography sx={{ fontFamily: 'Josefin Slab' }}>
                         Already have an account?
                     </Typography>
+                    <LinkMui component={Link}
+                        to="/" 
+                        underline="none" 
+                        color="inherit"
+                        className={styles.Link}
+                    >
                     <Typography sx={{ fontFamily: 'Josefin Slab' }}>
-                        Log in here.
+                        Sign up here.
                     </Typography>
+                    </LinkMui>
                 </Stack>
                 
             </Box>
             <Box className={styles.LoginFormBox} sx={{
                 marginBottom:4,
             }}>
-                <Typography sx={{ fontFamily: 'Josefin Slab' ,color:`var(--pink)`,fontStyle:'italic',fontWeight:800}} >
+                <Typography sx={{ fontFamily: 'Josefin Slab' ,color:`var(--pink)`,fontStyle:'italic',fontWeight:600}} >
                     "Chuck Norris can login without signing up, on any website"
                 </Typography>
             </Box>
