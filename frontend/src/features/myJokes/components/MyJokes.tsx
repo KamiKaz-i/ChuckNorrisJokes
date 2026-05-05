@@ -5,7 +5,6 @@ import { useMyJokes,useDeleteMyJoke } from '../hooks/useMyJokes'
 import type { myJoke } from '../../../types/Joke'
 const MyJokes = () => {
   const {data:jokes,isPending,error} = useMyJokes();
-  console.log(jokes);
   const { mutate } = useDeleteMyJoke();
   const handleDelete = (indexToDelete: number) => {
     if (!jokes) return;

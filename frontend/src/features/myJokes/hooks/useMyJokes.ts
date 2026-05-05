@@ -1,5 +1,5 @@
 import { useQuery,useMutation,useQueryClient } from '@tanstack/react-query'
-import {fetchJokes} from '../api/myJokes'
+import {fetchJokes,deleteJokes} from '../api/myJokes'
 
 export const useMyJokes = () => {
 
@@ -10,20 +10,9 @@ export const useMyJokes = () => {
     })
 }
 export const useDeleteMyJoke = ()=>{
-  const token = localStorage.getItem('token');
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (id: number) => {
-      const res = await fetch(`http://localhost:3000/jokes/${id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        
-      });
-      if (!res.ok) throw new Error('Failed to update jokes');
-      return res.json();
-    },
+    mutationFn: deleteJokes,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['myJokes'] });
     }

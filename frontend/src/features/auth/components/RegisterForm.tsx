@@ -3,39 +3,20 @@ import jokeIcon from '../../../assets/joke-svgrepo-com.svg';
 import { Box,Stack,Typography,Button } from '@mui/material';
 import Logo from '../../../components/ui/Logo.tsx';
 import StyledTextField from '../../../components/forms/StyledTextField.tsx';
-import {  useNavigate,Link } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 import LinkMui from '@mui/material/Link';
-import { useMutation } from '@tanstack/react-query';
+import { useRegister } from '../hooks/useAuth.ts';
 import { useState } from 'react';
 export const RegisterForm = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const registerMutation = useMutation({
-        mutationFn: async () => {
-          const response = await fetch('http://localhost:3000/auth/register', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body:JSON.stringify({
-                email:email, 
-                password: password,
-            })
-          });
-          const res = await response.json()
-          return res;
-        },
-        onSuccess: () => {
-          navigate({ to: '/' });
-        },
-      });
-       const handleRegister = (e:React.SyntheticEvent) => {
+    const { mutate: register } = useRegister();
+    const handleRegister = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (email && password) {
-      registerMutation.mutate();
-    }
+        register({ email, password })
+    };
   };
-    const navigate = useNavigate();
   return (
     <Box className={styles.LoginFormContainer}>
         <Logo scale={0.65} top={80} left={-70}></Logo>

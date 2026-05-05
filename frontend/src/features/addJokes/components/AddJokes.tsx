@@ -5,10 +5,9 @@ import { useSaveJoke } from '../../randomJokes/hooks/useRandomJokes';
 const AddJokes = () => {
   const [myJoke,setMyJoke] = useState('');
   const { mutate } = useSaveJoke();
-  const handleChangeMyJoke = (event)=>{
+  const handleChangeMyJoke = (event:React.ChangeEvent<HTMLInputElement>)=>{
     setMyJoke(event.target.value);
   }
-
   const handleSaveMyJoke = ()=>{
       mutate(myJoke);
   }
