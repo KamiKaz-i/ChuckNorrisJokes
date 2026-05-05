@@ -39,7 +39,7 @@ const RandomJokes = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setSelectedCategory(event.target.value as string);
   };
-  const handleImpersonate = (event)=>{
+  const handleImpersonate = (event:React.ChangeEvent<HTMLInputElement>)=>{
     setImpersonate(event.target.value);
   }
  

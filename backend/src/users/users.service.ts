@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-
 export type User = {
   userId: number;
   email: string;
@@ -22,6 +21,7 @@ export class UsersService {
   ];
 
   findOne(email: string): User | undefined {
+    console.log(this.users);
     return this.users.find((user) => user.email === email);
   }
   create(email: string, pass: string) {

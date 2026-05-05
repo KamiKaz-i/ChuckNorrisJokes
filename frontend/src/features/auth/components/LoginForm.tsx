@@ -23,6 +23,11 @@ export const LoginForm = () => {
             password: password,
         })
       });
+      if (!response.ok) {
+      localStorage.clear();
+      throw new Error("Unauthorized");
+      
+    }
       const res = await response.json()
       return res;
     },
@@ -31,7 +36,7 @@ export const LoginForm = () => {
       navigate({ to: '/randomJokes' });
     },
   });
-  const handleLogin = (e) => {
+  const handleLogin = (e:React.SyntheticEvent) => {
     e.preventDefault();
     if (email && password) {
       loginMutation.mutate();
@@ -74,7 +79,7 @@ export const LoginForm = () => {
                         color="inherit"
                         className={styles.Link}
                     >
-                    <Typography sx={{ fontFamily: 'Josefin Slab' }}>
+                     <Typography sx={{ fontFamily: 'Josefin Slab',fontWeight:'700' }}>
                         Sign up here.
                     </Typography>
                     </LinkMui>

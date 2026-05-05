@@ -1,5 +1,5 @@
 export interface Joke {
-  id: number;
+  id: string;
   userId: number;
   text: string;
   category?: string;

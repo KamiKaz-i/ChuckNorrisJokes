@@ -5,7 +5,36 @@ import Logo from '../../../components/ui/Logo.tsx';
 import StyledTextField from '../../../components/forms/StyledTextField.tsx';
 import {  useNavigate,Link } from '@tanstack/react-router';
 import LinkMui from '@mui/material/Link';
+import { useMutation } from '@tanstack/react-query';
+import { useState } from 'react';
 export const RegisterForm = () => {
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const registerMutation = useMutation({
+        mutationFn: async () => {
+          const response = await fetch('http://localhost:3000/auth/register', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+                email:email, 
+                password: password,
+            })
+          });
+          const res = await response.json()
+          return res;
+        },
+        onSuccess: () => {
+          navigate({ to: '/' });
+        },
+      });
+       const handleRegister = (e:React.SyntheticEvent) => {
+    e.preventDefault();
+    if (email && password) {
+      registerMutation.mutate();
+    }
+  };
     const navigate = useNavigate();
   return (
     <Box className={styles.LoginFormContainer}>
@@ -23,14 +52,16 @@ export const RegisterForm = () => {
                 </Typography>
             </Box>
              <Box className={styles.LoginFormBox}>
-                <StyledTextField label="E-mail" placeholder="Type your email"></StyledTextField>
+                <StyledTextField label="E-mail" placeholder="Type your email" onChange={(e) => setEmail(e.target.value)}></StyledTextField>
             </Box> 
             <Box className={styles.LoginFormBox}>
-                <StyledTextField label="Password" placeholder="Type your password" type="password"></StyledTextField>
+                <StyledTextField label="Password" placeholder="Type your password" type="password" onChange={(e) => setPassword(e.target.value)}></StyledTextField>
             </Box>   
              <Box className={styles.LoginFormBox}>
-                <Button variant="contained" disabled sx={{
+                <Button variant="contained" onClick={handleRegister} disabled={!(email&&password)} sx={{
                     width:"100%",
+                    backgroundColor:"var(--blue)",
+                    
                 }}>CREATE ACCOUNT</Button>
             </Box>
             <Box className={styles.LoginFormBox}>
@@ -44,7 +75,7 @@ export const RegisterForm = () => {
                         color="inherit"
                         className={styles.Link}
                     >
-                    <Typography sx={{ fontFamily: 'Josefin Slab' }}>
+                    <Typography sx={{ fontFamily: 'Josefin Slab',fontWeight:'700' }}>
                         Sign up here.
                     </Typography>
                     </LinkMui>

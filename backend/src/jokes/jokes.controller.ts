@@ -17,20 +17,20 @@ export class JokesController {
   @UseGuards(AuthGuard)
   @Get()
   getMyJokes(@Request() req): Joke[] {
-    const {sub} = req.user;
+    const { sub } = req.user;
     return this.JokeService.getMyJokes(sub);
   }
   @UseGuards(AuthGuard)
   @Post()
   postMyJokes(@Request() req, @Body() newJoke: Pick<Joke, 'text'>): Joke[] {
-    const {sub} = req.user;
+    const { sub } = req.user;
     return this.JokeService.postMyJokes(newJoke.text, sub);
   }
   @UseGuards(AuthGuard)
   @Delete(':id')
-  deleteMyjoke(@Request() req, @Param('id') jokeToDelete: number): Joke[] {
+  deleteMyjoke(@Request() req, @Param('id') jokeToDelete: string): Joke[] {
     console.log('what');
-    const {sub} = req.user;
-    return this.JokeService.deleteMyJoke(Number(jokeToDelete), sub);
+    const { sub } = req.user;
+    return this.JokeService.deleteMyJoke(jokeToDelete, sub);
   }
 }

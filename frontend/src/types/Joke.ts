@@ -4,7 +4,6 @@ export interface Joke {
   categories: string[];
   url: string;
 }
-// export type myJokes = string[];
 export interface myJoke {
   id: number;
   userId: number;
