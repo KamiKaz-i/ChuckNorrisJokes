@@ -57,8 +57,7 @@ const RandomJokes = () => {
         </Box>
         <Box sx={{display:'flex',width:'80%'}}>
             <Typography sx={{ fontFamily: 'Josefin Slab' ,color:`var(--black)`,fontStyle:'italic',fontWeight:600,fontSize:'larger',overflow:'hidden',textOverflow:'ellipsis'}}>
-            {displayedJoke ? `"${displayedJoke}"` : ""}
-            
+            {displayedJoke&&!isFetching ? `"${displayedJoke}"` : ""}
             </Typography>
         </Box>
         

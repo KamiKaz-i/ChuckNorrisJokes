@@ -13,7 +13,7 @@ export const useRandomJoke = (category?: string, enabled: boolean = false) => {
   return useQuery({
     queryKey: ['joke'],
     queryFn: () => fetchRandomJoke(category),
-    enabled,
+    
     refetchOnWindowFocus: false,
     staleTime: Infinity, 
   })

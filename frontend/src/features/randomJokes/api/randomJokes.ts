@@ -11,11 +11,6 @@ export const fetchRandomJoke = async (category?: string): Promise<Joke> => {
   return res.json()
 }
 
-export const fetchRandomJokeByCategory = async (category: string): Promise<Joke> => {
-  const res = await fetch(`${BASE_URL}/jokes/random?category=${category}`);
-  if (!res.ok) throw new Error('Failed to fetch joke');
-  return res.json();
-};
 
 export const fetchCategories = async (): Promise<string[]> => {
   const res = await fetch(`${BASE_URL}/jokes/categories`);
